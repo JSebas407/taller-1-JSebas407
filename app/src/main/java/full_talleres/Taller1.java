@@ -18,7 +18,15 @@ package full_talleres;
 public class Taller1 {
     
     public static void main(String[] args) {
-
+        System.out.println(Convertir_km_seg(50));
+            System.out.println(Convertir_cm_lt(17));
+            System.out.println(Convertir_us_cops(100));
+            System.out.println(Convertir_cent_far(45));
+            System.out.println(Calcular_segs(45, 20, 30,17));
+            System.out.println(Calcular_peso_carga(300, 400));
+            System.out.println(Calcular_horasxviaje("Medellin", 3000, 60));
+            System.out.println(Calcular_combustible(23, 20, 40, 60));
+            System.out.println(Calcular_peso_luna(500));
 
     }
 
@@ -27,13 +35,40 @@ public class Taller1 {
      y la convierta a metros/seg y a metros/hora. Retorne un string del tipo: ### m/s - ### m/h. Si hay error, 
      devuelva el string "Error en la conversion"
     */
-    
+     public static String Convertir_km_seg (int km_seg){
+        try {
+            int mts_seg, mts_hora = 0;
+            mts_seg = 0;
+            mts_hora = 0;
+            final int Kmseg_a_mtseg = 1000;
+            final int kmseg_a_mthora = 3600000;
+            mts_seg = km_seg * Kmseg_a_mtseg;           
+            mts_hora = km_seg * kmseg_a_mthora; 
+            String result = mts_seg + "m/s "  + mts_hora + "m/h";
+            return result; 
+        } 
+        catch (Exception e) {
+            return  "Error en la conversion";
+        }        
+    }
     
 
     /*3. Diseñe un algoritmo e implemente la función Convertir_cm_lt que: reciba una cantidad double expresada en 
     cc (centímetros cúbicos) y devuelva un float con su equivalente en litros. Si hay algún error, retorne 0.
     */
-  
+     public static float Convertir_cm_lt (double cc){
+        try {
+            float litros = 0;
+            litros = 0;
+            final double cc_a_lt = 0.001d;
+            litros = (float)cc * (float)cc_a_lt;
+            return litros;
+        } 
+        
+        catch (Exception e) {
+            return 0;
+        }
+    }
     
 
   
@@ -41,7 +76,18 @@ public class Taller1 {
    y devuelva su equivalente en pesos usando una TRM de $4170 pesos por cada dólar. La función recibe enteros
    y devuelve enteros, pueden ser grandes. Si hay algún error, retorne -1.
    */
-   
+   public static int Convertir_us_cops (int dolares){
+        try {
+            int pesos = 0;
+            pesos = 0;
+            final int TRM = 4170;
+            pesos = dolares * TRM;
+            return pesos;
+        } 
+        catch (Exception e) {
+            return -1;
+        }       
+    }
     
   
    
@@ -49,7 +95,19 @@ public class Taller1 {
    centígrados y la devuelve en grados Fahrenheit (averiguar la fórmula) F = 32 + ( 9 * C / 5). Si hay algún error, 
    retorne 0.
    */
-
+    public static double Convertir_cent_far (int cent){
+        try {
+            double far = 0;
+            far = 0;
+            final byte cent_a_far = 32;
+            far = cent_a_far + (9 * cent / 5);
+            return far;
+        } 
+        
+        catch (Exception e) {
+            return 0;
+        }
+    }
           
 
    
@@ -57,15 +115,42 @@ public class Taller1 {
    el número de minutos y número segundos como enteros bytes, positivos y devuelva todo en segundos en un entero. 
    Si hay algún error, devuelva -1.
    */
-
+    public static int Calcular_segs (byte nro_dias, byte nro_horas, byte nro_min, byte nro_seg){
+        try {
+            int seg = 0;
+            seg = 0;
+            int dias_seg = nro_dias * 86400;
+            int horas_seg = nro_horas * 3600;
+            int min_seg = nro_min * 60;
+            int total_seg = dias_seg + horas_seg + min_seg + nro_seg;
+            return total_seg; 
+             
+        } 
+        
+        catch (Exception e) {
+            return -1;
+        }
+    }
    
 
    /*7.	Un usuario tiene un sistema de báscula para pesar camiones. Diseñe un algoritmo e implemente la función 
    Calcular_peso_carga que reciba un float con el peso total del camión cargado en toneladas y otro float con 
    lo que pesa el camión vacío en toneladas, y devuelva el peso neto de la carga en kilos y toneladas 
    en un string del tipo: "### kilos - ### toneladas". 
-   Si hay algún error, devuelva en un string "Error en la función Calcular_peso_carga"*/
+   Si hay algún error, devuelva en un string "Error en la función Calcular_peso_carga"*/}
 
+   public static String Calcular_peso_carga (float peso_camion_total, float peso_camion_vacio){
+        try {
+            float peso_carga_T = peso_camion_total - peso_camion_vacio;
+            float peso_carga_Kg = peso_carga_T * 1000;
+            String respuesta = peso_carga_T + "Toneladas " + peso_carga_Kg + "Kilos ";
+            return respuesta;
+        } 
+    
+        catch (Exception e) {
+            return "Error en la funcion Calcular_peso_carga";
+        }
+    }
    
 
    /*8.	Diseñe un algoritmo e implemente la función Calcular_horasxviaje que calcule y devuelva un float con las horas  
@@ -73,7 +158,17 @@ public class Taller1 {
    otro dato short que es la velocidad  promedio que alcanzará también el vehículo en kilómetros/hora.  
    Si hay algún error, devuelva -1.
    */
-
+    public static float Calcular_horasxviaje (String destino, short kms, short km_h){
+        try {
+            float horas_nec = kms/km_h;
+            System.out.println("Para llegar a " + destino + "Son " + horas_nec);
+            return horas_nec;
+        } 
+        
+        catch (Exception e) {
+            return -1;
+        }
+    }
   
    
    /*9.	Un avión necesita cargar combustible para cubrir sus rutas programadas en el día. 
@@ -86,6 +181,21 @@ public class Taller1 {
    
    Si hay algún error, devuelva -1.*/
 
+   public static float Calcular_combustible (int kilo1, int kilo2, int kilo3, int kilo4){
+        try {
+            float cant_combus1 = (float)((kilo1 * 0.2)/60.8);
+            float cant_combus2 = (float)((kilo2 * 0.2)/60.8);
+            float cant_combus3 = (float)((kilo3 * 0.2)/60.8);
+            float cant_combus4 = (float)((kilo4 * 0.2)/60.8);
+            float total_combus = cant_combus1 + cant_combus2 + cant_combus3 + cant_combus4;
+            return total_combus;
+        } 
+    
+        catch (Exception e) {
+           return -1;
+        }
+   }
+
    
    
    
@@ -96,6 +206,17 @@ public class Taller1 {
    
    Si hay algún error, devuelva 0.
    */
+
+   public static double Calcular_peso_luna (byte peso_tierra){
+        try {
+            double peso_luna = peso_tierra * 0.165;
+            return peso_luna;
+        } 
+        
+        catch (Exception e) {
+            return 0;
+        }
+    }
    
    
    
